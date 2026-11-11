@@ -1,0 +1,58 @@
+@import "tailwindcss" source(none);
+@import "tom-select/dist/css/tom-select.css";
+@source "./";
+
+/* Theme: override any --qb-* property on the query-builder element. */
+:host {
+    --qb-text: #111827;
+    --qb-bg: #ffffff;
+    --qb-group-bg: #f9fafb;
+    --qb-border: #d1d5db;
+    --qb-accent: #2563eb;
+    --qb-accent-text: #ffffff;
+    --qb-danger: #b91c1c;
+    --qb-radius: 0.375rem;
+    --qb-gap: 0.5rem;
+    --qb-font-size: 0.875rem;
+    display: block;
+    color: var(--qb-text);
+    font-family: inherit;
+    font-size: var(--qb-font-size);
+}
+
+.ts-wrapper .ts-control,
+.ts-wrapper.single.input-active .ts-control {
+    min-height: 2.25rem;
+    border-color: var(--qb-border);
+    border-radius: var(--qb-radius);
+    background: var(--qb-bg);
+    color: inherit;
+    font-size: inherit;
+}
+
+.ts-wrapper.focus .ts-control {
+    border-color: var(--qb-accent);
+    box-shadow: 0 0 0 1px var(--qb-accent);
+}
+
+.ts-wrapper .ts-control input,
+.ts-dropdown {
+    color: inherit;
+    font-size: inherit;
+}
+
+.ts-dropdown {
+    border-color: var(--qb-border);
+    background: var(--qb-bg);
+}
+
+.ts-dropdown .active {
+    background: color-mix(in srgb, var(--qb-accent) 12%, var(--qb-bg));
+    color: inherit;
+}
+
+.ts-wrapper.multi .ts-control > div {
+    background: color-mix(in srgb, var(--qb-accent) 12%, var(--qb-bg));
+    color: inherit;
+    border-radius: calc(var(--qb-radius) / 2);
+}

@@ -1,0 +1,28 @@
+{
+  "name": "@andmemasin/query-builder",
+  "version": "0.1.0",
+  "description": "<query-builder> web component that edits jQuery QueryBuilder compatible rules JSON",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "dist/query-builder.js",
+  "files": [
+    "dist",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node build.mjs && node --test \"tests-js/*.test.js\""
+  },
+  "dependencies": {
+    "lit": "^3.3.3",
+    "tom-select": "^2.7.0"
+  },
+  "devDependencies": {
+    "@happy-dom/global-registrator": "^21.0.4",
+    "@tailwindcss/cli": "^4.3.5",
+    "esbuild": "^0.28.2",
+    "happy-dom": "^21.0.4",
+    "tailwindcss": "^4.3.5"
+  }
+}
