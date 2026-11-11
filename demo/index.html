@@ -7,6 +7,8 @@
     <style>
         body { font-family: system-ui, sans-serif; max-width: 60rem; margin: 2rem auto; padding: 0 1rem; color: #111827; }
         pre { background: #f3f4f6; padding: 1rem; overflow: auto; font-size: 0.8rem; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #d1d5db; padding: 0.25rem 0.5rem; text-align: left; vertical-align: top; }
         .themed { --qb-accent: #047857; --qb-group-bg: #ecfdf5; --qb-radius: 0; }
     </style>
     <script type="module" src="../dist/query-builder.js"></script>
@@ -17,7 +19,8 @@
 
 <form id="form">
     <query-builder id="qb" name="rules"></query-builder>
-    <p><button type="submit">Submit</button> <button type="reset">Reset</button></p>
+    <p><button type="submit">Submit</button> <button type="reset">Reset</button>
+        <label><input type="checkbox" id="readonly"> Read-only</label></p>
 </form>
 
 <p>Valid: <strong id="valid"></strong></p>
@@ -28,6 +31,20 @@
 <h2>Themed with --qb-* properties</h2>
 <query-builder class="themed" filters='[{"id":"name","label":"Name","type":"string"}]'
     rules='{"condition":"OR","rules":[{"id":"name","field":"name","type":"string","input":"text","operator":"contains","value":"son"}]}'></query-builder>
+
+<h2>Read-only, one per table row</h2>
+<table id="readonly-table">
+    <thead><tr><th>Item</th><th>Rules</th></tr></thead>
+    <tbody>
+        <tr><td>Young men</td><td><query-builder readonly
+            rules='{"condition":"AND","rules":[{"id":"sex","field":"sex","type":"integer","input":"select","operator":"equal","value":1},{"id":"age","field":"age","type":"integer","input":"number","operator":"between","value":[15,24]}]}'></query-builder></td></tr>
+        <tr><td>North or West, not named Smith</td><td><query-builder readonly
+            rules='{"condition":"AND","rules":[{"condition":"OR","rules":[{"id":"region","field":"region","type":"string","input":"select","operator":"equal","value":"1"},{"id":"region","field":"region","type":"string","input":"select","operator":"equal","value":"4"}]},{"id":"name","field":"name","type":"string","input":"text","operator":"not_contains","value":"Smith"}]}'></query-builder></td></tr>
+        <tr><td>Removed field</td><td><query-builder readonly
+            rules='{"condition":"AND","rules":[{"id":"gone","field":"gone","type":"string","input":"text","operator":"equal","value":"x"},{"id":"consent","field":"consent","type":"boolean","input":"radio","operator":"equal","value":true}]}'></query-builder></td></tr>
+        <tr><td>Everyone</td><td><query-builder readonly></query-builder></td></tr>
+    </tbody>
+</table>
 
 <script type="module">
     const qb = document.getElementById('qb');
@@ -41,6 +58,8 @@
         { id: 'consent', label: 'Consent given', type: 'boolean' },
         { id: 'channel', label: 'Channels', type: 'string', input: 'checkbox', values: { web: 'Web', phone: 'Phone', mail: 'Mail' } },
     ];
+    for (const el of document.querySelectorAll('#readonly-table query-builder')) el.filters = qb.filters;
+    document.getElementById('readonly').addEventListener('change', (e) => { qb.readonly = e.target.checked; });
     qb.rules = {"condition": "AND", "rules": [
         {"id": "age", "field": "age", "type": "integer", "input": "number", "operator": "between", "value": [15, 74]},
         {"condition": "OR", "rules": [

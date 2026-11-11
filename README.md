@@ -38,7 +38,7 @@ Load `dist/query-builder.js` (one self-contained ES module, no build needed) and
 </form>
 ```
 
-The form submits the rules JSON under `name`. From script: `element.value` (rules JSON with `valid`), `element.valid`, and a `change` event with `detail: {rules, valid}`. Colours can be themed with `--qb-*` CSS custom properties. See `demo/index.html`.
+The form submits the rules JSON under `name`. From script: `element.value` (rules JSON with `valid`), `element.valid`, and a `change` event with `detail: {rules, valid}`. Add the `readonly` attribute (or set `element.readonly = true`) to show the rules as compact text without editing controls. Colours can be themed with `--qb-*` CSS custom properties. See `demo/index.html`.
 
 Development: `npm install`, `npm test` (builds `dist/` and runs the node tests); PHP tests with `vendor/bin/phpunit`.
 

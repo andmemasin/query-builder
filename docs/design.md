@@ -77,6 +77,7 @@ Inputs:
 - `filters` (property, or `filters` attribute with JSON): field definitions in the jQuery QueryBuilder filter shape, so existing configuration can be passed as is: `id`, `label`, `type` (`string`, `integer`, `double`, `date`, `boolean`), `input` (`text`, `number`, `select`, `radio`, `checkbox`), `values` (object `{value: label}` or list of `{value: label}`), `operators` (allowed subset), `multiple`.
 - `rules` (property, or `rules` attribute with JSON): initial rules.
 - `texts` (property): UI strings; English defaults.
+- `readonly` (boolean attribute, reflected as the `readonly` property): shows the rules as one compact line of text (field label, operator, value labels; nested groups in parentheses; AND/OR highlighted; unknown fields marked) with no editing controls and no `change` events, small enough for one builder per table row. Toggling it switches mode at runtime; the value and form value stay the rules JSON.
 
 Outputs:
 
