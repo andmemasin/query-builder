@@ -231,3 +231,51 @@ test('sets the rules JSON as its form value', async () => {
         delete HTMLElement.prototype.attachInternals;
     }
 });
+
+test('readonly shows the rules as text without editing controls', async () => {
+    const unknown = { id: 'gone', field: 'gone', type: 'string', input: 'text', operator: 'equal', value: 'x' };
+    const rules = { ...EXAMPLE, rules: [...EXAMPLE.rules, unknown, { id: 'name', field: 'name', operator: 'contains', value: '<b>x</b>' }] };
+    document.body.innerHTML = `<query-builder readonly filters='${JSON.stringify(FILTERS)}'></query-builder>`;
+    const el = document.querySelector('query-builder');
+    el.rules = rules;
+    await el.updateComplete;
+    assert.equal(el.readonly, true);
+    assert.deepEqual($$(el, 'button, input, select, qb-select'), []);
+    assert.equal($(el, 'b'), null);
+    assert.equal(el.shadowRoot.textContent.replace(/\s+/g, ' ').trim(),
+        'Age between 15 and 74 AND (Sex equals Male OR Region is one of North, West) AND Unknown field: gone AND Name contains "<b>x</b>"');
+    assert.deepEqual(el.value.rules, rules.rules);
+});
+
+test('readonly with no rules shows a placeholder', async () => {
+    const el = await mount();
+    el.readonly = true;
+    await el.updateComplete;
+    assert.equal(el.shadowRoot.textContent.trim(), 'No conditions');
+});
+
+test('readonly reflects between attribute and property and toggles the mode', async () => {
+    const el = await mount(EXAMPLE);
+    const events = [];
+    el.addEventListener('change', (e) => events.push(e.detail));
+    assert.equal(el.readonly, false);
+    assert.ok(button(el, 'Add condition'));
+
+    el.readonly = true;
+    await el.updateComplete;
+    assert.equal(el.hasAttribute('readonly'), true);
+    assert.equal(button(el, 'Add condition'), undefined);
+
+    el.removeAttribute('readonly');
+    await el.updateComplete;
+    assert.equal(el.readonly, false);
+    assert.ok(button(el, 'Add condition'));
+
+    el.setAttribute('readonly', '');
+    await el.updateComplete;
+    assert.equal(el.readonly, true);
+    assert.deepEqual($$(el, 'button, input, select, qb-select'), []);
+    el.edit(() => el.root.rules.pop());
+    assert.deepEqual(events, []);
+    assert.deepEqual(el.value, EXAMPLE);
+});

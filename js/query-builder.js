@@ -33,6 +33,8 @@ export const DEFAULT_TEXTS = {
     remove: 'Remove',
     yes: 'Yes',
     no: 'No',
+    valueAnd: 'and',
+    noRules: 'No conditions',
     operators: {
         equal: 'equals',
         not_equal: 'does not equal',
@@ -116,7 +118,7 @@ let uid = 0;
 /**
  * <query-builder>: edits jQuery QueryBuilder compatible rules JSON.
  *
- * Inputs: `filters`, `rules` (property or JSON attribute), `texts` (property).
+ * Inputs: `filters`, `rules` (property or JSON attribute), `texts` (property), `readonly` (boolean attribute/property).
  * Outputs: `value` / `rules`, `valid`, and a `change` event with detail {rules, valid}.
  * With a `name` attribute it submits the rules JSON as a form field.
  */
@@ -127,12 +129,14 @@ export class QueryBuilder extends LitElement {
         filters: { type: Array },
         rules: { type: Object, noAccessor: true },
         texts: { attribute: false },
+        readonly: { type: Boolean, reflect: true },
     };
 
     constructor() {
         super();
         this.filters = [];
         this.texts = {};
+        this.readonly = false;
         this.root = { condition: 'AND', rules: [] };
         this.given = null;
         this.ids = new WeakMap();
@@ -203,6 +207,7 @@ export class QueryBuilder extends LitElement {
     }
 
     edit(change) {
+        if (this.readonly) return;
         change();
         this.requestUpdate();
         const rules = this.rules;
@@ -250,7 +255,37 @@ export class QueryBuilder extends LitElement {
     }
 
     render() {
-        return this.renderGroup(this.root, null);
+        if (!this.readonly) return this.renderGroup(this.root, null);
+        return html`<div class="leading-snug">${this.root.rules.length
+            ? this.renderText(this.root, true) : html`<span class="opacity-60">${this.t.noRules}</span>`}</div>`;
+    }
+
+    /** Read-only view: the rules as one compact line of text, nested groups in parentheses. */
+    renderText(node, isRoot = false) {
+        const t = this.t;
+        if (isGroup(node)) {
+            const condition = String(node.condition).toUpperCase() === 'OR' ? t.or : t.and;
+            const parts = node.rules.map((n, i) => html`${i ? html` <span class="font-semibold text-(--qb-accent)">${condition}</span> ` : nothing}${this.renderText(n)}`);
+            return isRoot ? parts : html`(${parts})`;
+        }
+        const filter = this.filterOf(node);
+        if (!filter) {
+            return node.id == null && node.field == null
+                ? html`<span class="opacity-60">${t.selectField}</span>`
+                : html`<span class="text-(--qb-danger)">${t.unknownField}: ${String(node.field ?? node.id)}</span>`;
+        }
+        const options = valuesFor(filter, t);
+        const text = (v) => options.find(o => String(o.value) === String(v))?.label
+            ?? (options.length || isNumeric(filter) ? String(v) : `"${v}"`);
+        const value = node.value;
+        let shown = nothing;
+        switch (shapeOf(filter, node.operator)) {
+            case 'none': break;
+            case 'pair': shown = Array.isArray(value) ? `${text(value[0])} ${t.valueAnd} ${text(value[1])}` : ''; break;
+            case 'list': shown = (Array.isArray(value) ? value : [value]).filter(v => v != null).map(text).join(', '); break;
+            default: shown = value == null ? '' : text(value);
+        }
+        return html`<span class="font-medium">${filter.label ?? filter.id}</span> ${t.operators[node.operator] ?? node.operator ?? ''} ${shown}`;
     }
 
     renderGroup(group, parent) {
