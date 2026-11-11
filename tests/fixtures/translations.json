@@ -1,0 +1,1698 @@
+[
+    {
+        "name": "equal and not_equal",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": "joe"
+                },
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "not_equal",
+                    "value": "bruce"
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(name = :p_0 and name <> :p_1)",
+        "params": {
+            ":p_0": "joe",
+            ":p_1": "bruce"
+        }
+    },
+    {
+        "name": "in and not_in",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "id",
+                    "field": "id",
+                    "type": "integer",
+                    "operator": "in",
+                    "value": [
+                        1,
+                        2,
+                        3
+                    ]
+                },
+                {
+                    "id": "id",
+                    "field": "id",
+                    "type": "integer",
+                    "operator": "not_in",
+                    "value": [
+                        4,
+                        5
+                    ]
+                }
+            ]
+        },
+        "paramPrefix": "a",
+        "where": "(id IN (:a_0, :a_1, :a_2) and id NOT IN (:a_3, :a_4))",
+        "params": {
+            ":a_0": 1,
+            ":a_1": 2,
+            ":a_2": 3,
+            ":a_3": 4,
+            ":a_4": 5
+        }
+    },
+    {
+        "name": "less and less_or_equal",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "id",
+                    "field": "id",
+                    "type": "integer",
+                    "operator": "less",
+                    "value": 100
+                },
+                {
+                    "id": "id",
+                    "field": "id",
+                    "type": "integer",
+                    "operator": "less_or_equal",
+                    "value": 50
+                }
+            ]
+        },
+        "paramPrefix": "b",
+        "where": "(id < :b_0 and id <= :b_1)",
+        "params": {
+            ":b_0": 100,
+            ":b_1": 50
+        }
+    },
+    {
+        "name": "greater and greater_or_equal",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "id",
+                    "field": "id",
+                    "type": "integer",
+                    "operator": "greater",
+                    "value": 10
+                },
+                {
+                    "id": "id",
+                    "field": "id",
+                    "type": "integer",
+                    "operator": "greater_or_equal",
+                    "value": 20
+                }
+            ]
+        },
+        "paramPrefix": "c",
+        "where": "(id > :c_0 and id >= :c_1)",
+        "params": {
+            ":c_0": 10,
+            ":c_1": 20
+        }
+    },
+    {
+        "name": "between",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "date",
+                    "field": "date",
+                    "type": "date",
+                    "operator": "between",
+                    "value": [
+                        "2015-01-01",
+                        "2015-01-30"
+                    ]
+                }
+            ]
+        },
+        "paramPrefix": "d",
+        "where": "(date BETWEEN :d_0 AND :d_1)",
+        "params": {
+            ":d_0": "2015-01-01",
+            ":d_1": "2015-01-30"
+        }
+    },
+    {
+        "name": "not_between",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "date",
+                    "field": "date",
+                    "type": "date",
+                    "operator": "not_between",
+                    "value": [
+                        "2015-01-01",
+                        "2015-01-30"
+                    ]
+                }
+            ]
+        },
+        "paramPrefix": "e",
+        "where": "(date NOT BETWEEN :e_0 AND :e_1)",
+        "params": {
+            ":e_0": "2015-01-01",
+            ":e_1": "2015-01-30"
+        }
+    },
+    {
+        "name": "begins_with and not_begins_with",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "begins_with",
+                    "value": "joe"
+                },
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "not_begins_with",
+                    "value": "bruce"
+                }
+            ]
+        },
+        "paramPrefix": "f",
+        "where": "(name LIKE :f_0 and name NOT LIKE :f_1)",
+        "params": {
+            ":f_0": "joe%",
+            ":f_1": "bruce%"
+        }
+    },
+    {
+        "name": "contains and not_contains",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "contains",
+                    "value": "thomas"
+                },
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "not_contains",
+                    "value": "paul"
+                }
+            ]
+        },
+        "paramPrefix": "g",
+        "where": "(name LIKE :g_0 and name NOT LIKE :g_1)",
+        "params": {
+            ":g_0": "%thomas%",
+            ":g_1": "%paul%"
+        }
+    },
+    {
+        "name": "ends_with and not_ends_with",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "ends_with",
+                    "value": "brian"
+                },
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "not_ends_with",
+                    "value": "david"
+                }
+            ]
+        },
+        "paramPrefix": "h",
+        "where": "(name LIKE :h_0 and name NOT LIKE :h_1)",
+        "params": {
+            ":h_0": "%brian",
+            ":h_1": "%david"
+        }
+    },
+    {
+        "name": "value-less operators",
+        "rules": {
+            "condition": "or",
+            "rules": [
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "is_empty"
+                },
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "is_not_empty"
+                },
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "is_null"
+                },
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "is_not_null"
+                }
+            ]
+        },
+        "paramPrefix": "i",
+        "where": "(name = \"\" or name <> \"\" or name IS NULL or name IS NOT NULL)",
+        "params": []
+    },
+    {
+        "name": "nested groups continue parameter numbering",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "begins_with",
+                    "value": "kurt"
+                },
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "ends_with",
+                    "value": "cobain"
+                },
+                {
+                    "condition": "or",
+                    "rules": [
+                        {
+                            "id": "name",
+                            "field": "name",
+                            "type": "string",
+                            "operator": "equal",
+                            "value": "joe"
+                        },
+                        {
+                            "id": "name",
+                            "field": "name",
+                            "type": "string",
+                            "operator": "equal",
+                            "value": "paul"
+                        },
+                        {
+                            "condition": "and",
+                            "rules": [
+                                {
+                                    "id": "id",
+                                    "field": "id",
+                                    "type": "integer",
+                                    "operator": "equal",
+                                    "value": 10
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "paramPrefix": "j",
+        "where": "(name LIKE :j_0 and name LIKE :j_1 and (name = :j_2 or name = :j_3 or (id = :j_4)))",
+        "params": {
+            ":j_0": "kurt%",
+            ":j_1": "%cobain",
+            ":j_2": "joe",
+            ":j_3": "paul",
+            ":j_4": 10
+        }
+    },
+    {
+        "name": "numbering continues after a nested group",
+        "rules": {
+            "condition": "AND",
+            "rules": [
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "in",
+                    "value": [
+                        1,
+                        2
+                    ]
+                },
+                {
+                    "condition": "OR",
+                    "rules": [
+                        {
+                            "id": "b",
+                            "field": "b",
+                            "type": "string",
+                            "operator": "equal",
+                            "value": 3
+                        },
+                        {
+                            "condition": "AND",
+                            "rules": [
+                                {
+                                    "id": "c",
+                                    "field": "c",
+                                    "type": "string",
+                                    "operator": "between",
+                                    "value": [
+                                        4,
+                                        5
+                                    ]
+                                },
+                                {
+                                    "id": "d",
+                                    "field": "d",
+                                    "type": "string",
+                                    "operator": "contains",
+                                    "value": "x"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "e",
+                    "field": "e",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 6
+                },
+                {
+                    "condition": "OR",
+                    "rules": [
+                        {
+                            "id": "f",
+                            "field": "f",
+                            "type": "string",
+                            "operator": "not_in",
+                            "value": [
+                                7,
+                                8,
+                                9
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(a IN (:p_0, :p_1) AND (b = :p_2 OR (c BETWEEN :p_3 AND :p_4 AND d LIKE :p_5)) AND e = :p_6 AND (f NOT IN (:p_7, :p_8, :p_9)))",
+        "params": {
+            ":p_0": 1,
+            ":p_1": 2,
+            ":p_2": 3,
+            ":p_3": 4,
+            ":p_4": 5,
+            ":p_5": "%x%",
+            ":p_6": 6,
+            ":p_7": 7,
+            ":p_8": 8,
+            ":p_9": 9
+        }
+    },
+    {
+        "name": "design example with valid flag",
+        "rules": {
+            "condition": "AND",
+            "rules": [
+                {
+                    "id": "age",
+                    "field": "age",
+                    "type": "integer",
+                    "input": "number",
+                    "operator": "between",
+                    "value": [
+                        15,
+                        74
+                    ]
+                },
+                {
+                    "condition": "OR",
+                    "rules": [
+                        {
+                            "id": "sex",
+                            "field": "sex",
+                            "type": "integer",
+                            "input": "select",
+                            "operator": "equal",
+                            "value": 1
+                        },
+                        {
+                            "id": "region",
+                            "field": "region",
+                            "type": "string",
+                            "input": "select",
+                            "operator": "in",
+                            "value": [
+                                "1",
+                                "4"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "valid": true
+        },
+        "paramPrefix": null,
+        "where": "(age BETWEEN :p_0 AND :p_1 AND (sex = :p_2 OR region IN (:p_3, :p_4)))",
+        "params": {
+            ":p_0": 15,
+            ":p_1": 74,
+            ":p_2": 1,
+            ":p_3": "1",
+            ":p_4": "4"
+        }
+    },
+    {
+        "name": "mixed case condition kept as given",
+        "rules": {
+            "condition": "Or",
+            "rules": [
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 1
+                },
+                {
+                    "id": "b",
+                    "field": "b",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 2
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(a = :p_0 Or b = :p_1)",
+        "params": {
+            ":p_0": 1,
+            ":p_1": 2
+        }
+    },
+    {
+        "name": "is_null with empty string value",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "is_null",
+                    "value": ""
+                }
+            ]
+        },
+        "paramPrefix": "x",
+        "where": "(name IS NULL)",
+        "params": []
+    },
+    {
+        "name": "is_not_null with false value",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "is_not_null",
+                    "value": false
+                }
+            ]
+        },
+        "paramPrefix": "y",
+        "where": "(name IS NOT NULL)",
+        "params": []
+    },
+    {
+        "name": "equal null becomes IS NULL",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "volume",
+                    "field": "volume",
+                    "type": "integer",
+                    "operator": "equal",
+                    "value": null
+                }
+            ]
+        },
+        "paramPrefix": "z",
+        "where": "(volume IS NULL)",
+        "params": []
+    },
+    {
+        "name": "not_equal null becomes IS NOT NULL",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "volume",
+                    "field": "volume",
+                    "type": "integer",
+                    "operator": "not_equal",
+                    "value": null
+                }
+            ]
+        },
+        "paramPrefix": "w",
+        "where": "(volume IS NOT NULL)",
+        "params": []
+    },
+    {
+        "name": "equal without value key becomes IS NULL",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "volume",
+                    "field": "volume",
+                    "type": "string",
+                    "operator": "equal"
+                },
+                {
+                    "id": "volume",
+                    "field": "volume",
+                    "type": "string",
+                    "operator": "not_equal"
+                },
+                {
+                    "id": "n",
+                    "field": "n",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 1
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(volume IS NULL and volume IS NOT NULL and n = :p_0)",
+        "params": {
+            ":p_0": 1
+        }
+    },
+    {
+        "name": "value-less operators ignore stray values",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "is_empty",
+                    "value": "x"
+                },
+                {
+                    "id": "b",
+                    "field": "b",
+                    "type": "string",
+                    "operator": "is_not_empty",
+                    "value": [
+                        1,
+                        2
+                    ]
+                },
+                {
+                    "id": "c",
+                    "field": "c",
+                    "type": "string",
+                    "operator": "is_null",
+                    "value": 0
+                },
+                {
+                    "id": "d",
+                    "field": "d",
+                    "type": "string",
+                    "operator": "is_not_null",
+                    "value": "abc"
+                },
+                {
+                    "id": "e",
+                    "field": "e",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": "kept"
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(a = \"\" and b <> \"\" and c IS NULL and d IS NOT NULL and e = :p_0)",
+        "params": {
+            ":p_0": "kept"
+        }
+    },
+    {
+        "name": "values are bound without casting",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 0
+                },
+                {
+                    "id": "b",
+                    "field": "b",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": "0"
+                },
+                {
+                    "id": "c",
+                    "field": "c",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": ""
+                },
+                {
+                    "id": "d",
+                    "field": "d",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 1.5
+                },
+                {
+                    "id": "e",
+                    "field": "e",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": true
+                },
+                {
+                    "id": "f",
+                    "field": "f",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": false
+                },
+                {
+                    "id": "g",
+                    "field": "g",
+                    "type": "string",
+                    "operator": "in",
+                    "value": [
+                        "1",
+                        2,
+                        3.25
+                    ]
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(a = :p_0 and b = :p_1 and c = :p_2 and d = :p_3 and e = :p_4 and f = :p_5 and g IN (:p_6, :p_7, :p_8))",
+        "params": {
+            ":p_0": 0,
+            ":p_1": "0",
+            ":p_2": "",
+            ":p_3": 1.5,
+            ":p_4": true,
+            ":p_5": false,
+            ":p_6": "1",
+            ":p_7": 2,
+            ":p_8": 3.25
+        }
+    },
+    {
+        "name": "like operators with a number",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "contains",
+                    "value": 5
+                },
+                {
+                    "id": "b",
+                    "field": "b",
+                    "type": "string",
+                    "operator": "begins_with",
+                    "value": 12
+                },
+                {
+                    "id": "c",
+                    "field": "c",
+                    "type": "string",
+                    "operator": "ends_with",
+                    "value": 7
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(a LIKE :p_0 and b LIKE :p_1 and c LIKE :p_2)",
+        "params": {
+            ":p_0": "%5%",
+            ":p_1": "12%",
+            ":p_2": "%7"
+        }
+    },
+    {
+        "name": "list operators with a scalar value",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "in",
+                    "value": 5
+                },
+                {
+                    "id": "b",
+                    "field": "b",
+                    "type": "string",
+                    "operator": "between",
+                    "value": 3
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(a IN (:p_0) and b BETWEEN :p_1)",
+        "params": {
+            ":p_0": 5,
+            ":p_1": 3
+        }
+    },
+    {
+        "name": "in with an empty list",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "in",
+                    "value": []
+                },
+                {
+                    "id": "b",
+                    "field": "b",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 1
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(a IN () and b = :p_0)",
+        "params": {
+            ":p_0": 1
+        }
+    },
+    {
+        "name": "single value operator with a list binds all items",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": [
+                        1,
+                        2
+                    ]
+                },
+                {
+                    "id": "b",
+                    "field": "b",
+                    "type": "string",
+                    "operator": "contains",
+                    "value": [
+                        "x",
+                        "y"
+                    ]
+                },
+                {
+                    "id": "c",
+                    "field": "c",
+                    "type": "string",
+                    "operator": "less",
+                    "value": 3
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(a = :p_0 and b LIKE :p_2 and c < :p_4)",
+        "params": {
+            ":p_0": 1,
+            ":p_1": 2,
+            ":p_2": "%x%",
+            ":p_3": "y",
+            ":p_4": 3
+        }
+    },
+    {
+        "name": "value operator without a value keeps the placeholder mark",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "less"
+                },
+                {
+                    "id": "b",
+                    "field": "b",
+                    "type": "string",
+                    "operator": "in",
+                    "value": null
+                },
+                {
+                    "id": "c",
+                    "field": "c",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 1
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(a < ? and b IN () and c = :p_0)",
+        "params": {
+            ":p_0": 1
+        }
+    },
+    {
+        "name": "conditions without field or operator are skipped",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "operator": "equal",
+                    "value": 1
+                },
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 2
+                },
+                {
+                    "field": "b",
+                    "value": 3
+                },
+                {
+                    "id": "c"
+                },
+                {
+                    "id": "d",
+                    "field": "d",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 4
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(a = :p_0 and d = :p_1)",
+        "params": {
+            ":p_0": 2,
+            ":p_1": 4
+        }
+    },
+    {
+        "name": "group whose conditions are all skipped",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "operator": "equal",
+                    "value": 1
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "()",
+        "params": []
+    },
+    {
+        "name": "empty root group",
+        "rules": {
+            "condition": "AND",
+            "rules": []
+        },
+        "paramPrefix": null,
+        "where": "",
+        "params": []
+    },
+    {
+        "name": "root without rules",
+        "rules": {
+            "condition": "AND"
+        },
+        "paramPrefix": null,
+        "where": "",
+        "params": []
+    },
+    {
+        "name": "empty nested group leaves a dangling condition",
+        "rules": {
+            "condition": "AND",
+            "rules": [
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 1
+                },
+                {
+                    "condition": "OR",
+                    "rules": []
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(a = :p_0 AND )",
+        "params": {
+            ":p_0": 1
+        }
+    },
+    {
+        "name": "non-array entries in rules are ignored",
+        "rules": {
+            "condition": "AND",
+            "rules": [
+                "junk",
+                5,
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 1
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(a = :p_0)",
+        "params": {
+            ":p_0": 1
+        }
+    },
+    {
+        "name": "root without condition",
+        "rules": {
+            "rules": [
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 1
+                },
+                {
+                    "id": "b",
+                    "field": "b",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 2
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(a = :p_0  b = :p_1)",
+        "params": {
+            ":p_0": 1,
+            ":p_1": 2
+        }
+    },
+    {
+        "name": "integer field ids",
+        "rules": {
+            "condition": "AND",
+            "rules": [
+                {
+                    "id": 110,
+                    "field": 110,
+                    "type": "integer",
+                    "operator": "equal",
+                    "value": 3
+                },
+                {
+                    "id": "111",
+                    "field": "111",
+                    "type": "string",
+                    "operator": "in",
+                    "value": [
+                        "1",
+                        "2"
+                    ]
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(110 = :p_0 AND 111 IN (:p_1, :p_2))",
+        "params": {
+            ":p_0": 3,
+            ":p_1": "1",
+            ":p_2": "2"
+        }
+    },
+    {
+        "name": "integer field ids quoted",
+        "rules": {
+            "condition": "AND",
+            "rules": [
+                {
+                    "id": 110,
+                    "field": 110,
+                    "type": "integer",
+                    "operator": "equal",
+                    "value": 3
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "quoter": "mysql",
+        "where": "(`110` = :p_0)",
+        "params": {
+            ":p_0": 3
+        }
+    },
+    {
+        "name": "integer field ids with table prefix",
+        "rules": {
+            "condition": "AND",
+            "rules": [
+                {
+                    "id": 110,
+                    "field": 110,
+                    "type": "integer",
+                    "operator": "greater",
+                    "value": 3
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "addPrefix": "t",
+        "quoter": "mysql",
+        "where": "(`t`.`110` > :p_0)",
+        "params": {
+            ":p_0": 3
+        }
+    },
+    {
+        "name": "dotted field unquoted by default",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "t.name",
+                    "field": "t.name",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": "joe"
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "where": "(t.name = :p_0)",
+        "params": {
+            ":p_0": "joe"
+        }
+    },
+    {
+        "name": "mysql quoter in nested groups",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "149387X713X4315",
+                    "field": "149387X713X4315",
+                    "type": "string",
+                    "operator": "in",
+                    "value": [
+                        "1",
+                        "2"
+                    ]
+                },
+                {
+                    "condition": "or",
+                    "rules": [
+                        {
+                            "id": "name",
+                            "field": "name",
+                            "type": "string",
+                            "operator": "is_null"
+                        },
+                        {
+                            "id": "name",
+                            "field": "name",
+                            "type": "string",
+                            "operator": "contains",
+                            "value": "jo"
+                        }
+                    ]
+                }
+            ]
+        },
+        "paramPrefix": "q",
+        "quoter": "mysql",
+        "where": "(`149387X713X4315` IN (:q_0, :q_1) and (`name` IS NULL or `name` LIKE :q_2))",
+        "params": {
+            ":q_0": "1",
+            ":q_1": "2",
+            ":q_2": "%jo%"
+        }
+    },
+    {
+        "name": "mysql quoter on dotted names and backticks",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "t.col",
+                    "field": "t.col",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 1
+                },
+                {
+                    "id": "db.t.col",
+                    "field": "db.t.col",
+                    "type": "string",
+                    "operator": "is_not_null",
+                    "value": null
+                },
+                {
+                    "id": "a`b",
+                    "field": "a`b",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 2
+                },
+                {
+                    "id": "x` = 1 OR `1",
+                    "field": "x` = 1 OR `1",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 3
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "quoter": "mysql",
+        "where": "(`t`.`col` = :p_0 and `db`.`t`.`col` IS NOT NULL and `a``b` = :p_1 and `x`` = 1 OR ``1` = :p_2)",
+        "params": {
+            ":p_0": 1,
+            ":p_1": 2,
+            ":p_2": 3
+        }
+    },
+    {
+        "name": "add prefix: equal and not_equal",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": "joe"
+                },
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "not_equal",
+                    "value": "bruce"
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "addPrefix": "myTableName",
+        "where": "(myTableName.name = :p_0 and myTableName.name <> :p_1)",
+        "params": {
+            ":p_0": "joe",
+            ":p_1": "bruce"
+        }
+    },
+    {
+        "name": "add prefix: in and not_in",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "id",
+                    "field": "id",
+                    "type": "integer",
+                    "operator": "in",
+                    "value": [
+                        1,
+                        2,
+                        3
+                    ]
+                },
+                {
+                    "id": "id",
+                    "field": "id",
+                    "type": "integer",
+                    "operator": "not_in",
+                    "value": [
+                        4,
+                        5
+                    ]
+                }
+            ]
+        },
+        "paramPrefix": "a",
+        "addPrefix": "table2",
+        "where": "(table2.id IN (:a_0, :a_1, :a_2) and table2.id NOT IN (:a_3, :a_4))",
+        "params": {
+            ":a_0": 1,
+            ":a_1": 2,
+            ":a_2": 3,
+            ":a_3": 4,
+            ":a_4": 5
+        }
+    },
+    {
+        "name": "add prefix: less and less_or_equal",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "id",
+                    "field": "id",
+                    "type": "integer",
+                    "operator": "less",
+                    "value": 100
+                },
+                {
+                    "id": "id",
+                    "field": "id",
+                    "type": "integer",
+                    "operator": "less_or_equal",
+                    "value": 50
+                }
+            ]
+        },
+        "paramPrefix": "b",
+        "addPrefix": "table3",
+        "where": "(table3.id < :b_0 and table3.id <= :b_1)",
+        "params": {
+            ":b_0": 100,
+            ":b_1": 50
+        }
+    },
+    {
+        "name": "add prefix: greater and greater_or_equal",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "id",
+                    "field": "id",
+                    "type": "integer",
+                    "operator": "greater",
+                    "value": 10
+                },
+                {
+                    "id": "id",
+                    "field": "id",
+                    "type": "integer",
+                    "operator": "greater_or_equal",
+                    "value": 20
+                }
+            ]
+        },
+        "paramPrefix": "c",
+        "addPrefix": "table4",
+        "where": "(table4.id > :c_0 and table4.id >= :c_1)",
+        "params": {
+            ":c_0": 10,
+            ":c_1": 20
+        }
+    },
+    {
+        "name": "add prefix: between",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "date",
+                    "field": "date",
+                    "type": "date",
+                    "operator": "between",
+                    "value": [
+                        "2015-01-01",
+                        "2015-01-30"
+                    ]
+                }
+            ]
+        },
+        "paramPrefix": "d",
+        "addPrefix": "table5",
+        "where": "(table5.date BETWEEN :d_0 AND :d_1)",
+        "params": {
+            ":d_0": "2015-01-01",
+            ":d_1": "2015-01-30"
+        }
+    },
+    {
+        "name": "add prefix: not_between",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "date",
+                    "field": "date",
+                    "type": "date",
+                    "operator": "not_between",
+                    "value": [
+                        "2015-01-01",
+                        "2015-01-30"
+                    ]
+                }
+            ]
+        },
+        "paramPrefix": "e",
+        "addPrefix": "table6",
+        "where": "(table6.date NOT BETWEEN :e_0 AND :e_1)",
+        "params": {
+            ":e_0": "2015-01-01",
+            ":e_1": "2015-01-30"
+        }
+    },
+    {
+        "name": "add prefix: begins_with and not_begins_with",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "begins_with",
+                    "value": "joe"
+                },
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "not_begins_with",
+                    "value": "bruce"
+                }
+            ]
+        },
+        "paramPrefix": "f",
+        "addPrefix": "table7",
+        "where": "(table7.name LIKE :f_0 and table7.name NOT LIKE :f_1)",
+        "params": {
+            ":f_0": "joe%",
+            ":f_1": "bruce%"
+        }
+    },
+    {
+        "name": "add prefix: contains and not_contains",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "contains",
+                    "value": "thomas"
+                },
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "not_contains",
+                    "value": "paul"
+                }
+            ]
+        },
+        "paramPrefix": "g",
+        "addPrefix": "table8",
+        "where": "(table8.name LIKE :g_0 and table8.name NOT LIKE :g_1)",
+        "params": {
+            ":g_0": "%thomas%",
+            ":g_1": "%paul%"
+        }
+    },
+    {
+        "name": "add prefix: ends_with and not_ends_with",
+        "rules": {
+            "condition": "and",
+            "rules": [
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "ends_with",
+                    "value": "brian"
+                },
+                {
+                    "id": "name",
+                    "field": "name",
+                    "type": "string",
+                    "operator": "not_ends_with",
+                    "value": "david"
+                }
+            ]
+        },
+        "paramPrefix": "h",
+        "addPrefix": "table9",
+        "where": "(table9.name LIKE :h_0 and table9.name NOT LIKE :h_1)",
+        "params": {
+            ":h_0": "%brian",
+            ":h_1": "%david"
+        }
+    },
+    {
+        "name": "add prefix in nested groups skips dotted fields",
+        "rules": {
+            "condition": "AND",
+            "rules": [
+                {
+                    "id": "a",
+                    "field": "a",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 1
+                },
+                {
+                    "id": "u.b",
+                    "field": "u.b",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 2
+                },
+                {
+                    "condition": "OR",
+                    "rules": [
+                        {
+                            "id": "c",
+                            "field": "c",
+                            "type": "string",
+                            "operator": "equal",
+                            "value": 3
+                        },
+                        {
+                            "condition": "AND",
+                            "rules": [
+                                {
+                                    "id": "v.d",
+                                    "field": "v.d",
+                                    "type": "string",
+                                    "operator": "in",
+                                    "value": [
+                                        4
+                                    ]
+                                },
+                                {
+                                    "id": "e",
+                                    "field": "e",
+                                    "type": "string",
+                                    "operator": "is_null",
+                                    "value": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "addPrefix": "t",
+        "where": "(t.a = :p_0 AND u.b = :p_1 AND (t.c = :p_2 OR (v.d IN (:p_3) AND t.e IS NULL)))",
+        "params": {
+            ":p_0": 1,
+            ":p_1": 2,
+            ":p_2": 3,
+            ":p_3": 4
+        }
+    },
+    {
+        "name": "remove prefix in nested groups",
+        "rules": {
+            "condition": "AND",
+            "rules": [
+                {
+                    "id": "t.a",
+                    "field": "t.a",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 1
+                },
+                {
+                    "id": "u.b",
+                    "field": "u.b",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 2
+                },
+                {
+                    "condition": "OR",
+                    "rules": [
+                        {
+                            "id": "t.c",
+                            "field": "t.c",
+                            "type": "string",
+                            "operator": "equal",
+                            "value": 3
+                        },
+                        {
+                            "condition": "AND",
+                            "rules": [
+                                {
+                                    "id": "d",
+                                    "field": "d",
+                                    "type": "string",
+                                    "operator": "equal",
+                                    "value": 4
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "removePrefix": "t",
+        "where": "(a = :p_0 AND u.b = :p_1 AND (c = :p_2 OR (d = :p_3)))",
+        "params": {
+            ":p_0": 1,
+            ":p_1": 2,
+            ":p_2": 3,
+            ":p_3": 4
+        }
+    },
+    {
+        "name": "remove prefix removes every occurrence",
+        "rules": {
+            "condition": "AND",
+            "rules": [
+                {
+                    "id": "xt.a",
+                    "field": "xt.a",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 1
+                },
+                {
+                    "id": "t.t.b",
+                    "field": "t.t.b",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 2
+                },
+                {
+                    "id": "st.c",
+                    "field": "st.c",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 3
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "removePrefix": "t",
+        "where": "(xa = :p_0 AND b = :p_1 AND sc = :p_2)",
+        "params": {
+            ":p_0": 1,
+            ":p_1": 2,
+            ":p_2": 3
+        }
+    },
+    {
+        "name": "remove then add prefix",
+        "rules": {
+            "condition": "AND",
+            "rules": [
+                {
+                    "id": "t.a",
+                    "field": "t.a",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 1
+                },
+                {
+                    "id": "b",
+                    "field": "b",
+                    "type": "string",
+                    "operator": "equal",
+                    "value": 2
+                }
+            ]
+        },
+        "paramPrefix": null,
+        "removePrefix": "t",
+        "addPrefix": "u",
+        "where": "(u.a = :p_0 AND u.b = :p_1)",
+        "params": {
+            ":p_0": 1,
+            ":p_1": 2
+        }
+    }
+]
