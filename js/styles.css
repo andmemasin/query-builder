@@ -68,3 +68,8 @@
     background: color-mix(in srgb, var(--qb-accent) 25%, var(--qb-bg));
     color: inherit;
 }
+
+.ts-wrapper.plugin-remove_button .item .remove,
+.ts-wrapper.plugin-remove_button .item.active .remove {
+    border-color: var(--qb-border);
+}
