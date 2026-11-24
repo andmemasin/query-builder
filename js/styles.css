@@ -56,3 +56,15 @@
     color: inherit;
     border-radius: calc(var(--qb-radius) / 2);
 }
+
+/* Tom Select's own greys for the "Add: ..." option and the active chip, on the theme properties (a dark theme sets them). */
+.ts-dropdown .create,
+.ts-dropdown .active.create {
+    color: inherit;
+    opacity: 0.75;
+}
+
+.ts-wrapper.multi .ts-control > div.active {
+    background: color-mix(in srgb, var(--qb-accent) 25%, var(--qb-bg));
+    color: inherit;
+}
